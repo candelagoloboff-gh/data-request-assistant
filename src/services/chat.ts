@@ -32,6 +32,7 @@ export type CardData = {
   file_urls?: string[];
   images_count?: number;
   similar_cards?: { name: string; url: string }[];
+  requester?: string;
 };
 
 export type SimilarCard = {

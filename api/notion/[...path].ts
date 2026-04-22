@@ -35,6 +35,7 @@ type CardData = {
   file_urls?: string[];
   images_count?: number;
   similar_cards?: { name: string; url: string }[];
+  requester?: string;
 };
 
 function notionText(content: string) {
@@ -179,6 +180,10 @@ export default async function handler(req: any, res: any) {
       };
     }
 
+    if (card.requester) {
+      properties['Requester'] = { rich_text: notionText(card.requester) };
+    }
+
     const makeRequest = async (props: Record<string, unknown>) => {
       return fetch(`${NOTION_API}/pages`, {
         method: 'POST',
@@ -201,6 +206,7 @@ export default async function handler(req: any, res: any) {
       const safeProps = { ...properties };
       delete safeProps['Archivos y multimedia'];
       delete safeProps['Casos similares'];
+      delete safeProps['Requester'];
       notionRes = await makeRequest(safeProps);
 
       if (!notionRes.ok) {

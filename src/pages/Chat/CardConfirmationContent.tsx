@@ -84,6 +84,13 @@ export function CardConfirmationContent({ card: initialCard, onConfirm, onBack, 
         <Stack sx={{ borderTop: `1px solid ${border.neutral.divider}` }} />
 
         <EditField
+          label="Tu nombre (Solicitante)"
+          value={card.requester ?? ''}
+          onChange={(v) => update('requester', v)}
+          theme={theme}
+        />
+
+        <EditField
           label="Descripción del pedido"
           value={card.request_description}
           onChange={(v) => update('request_description', v)}
