@@ -5,6 +5,7 @@
     "": {
       "name": "data-request-assistant",
       "dependencies": {
+        "@google/generative-ai": "^0.24.1",
         "@hookform/resolvers": "^3.10.0",
         "@tanstack/react-query": "^5",
         "axios": "^0.27.2",
@@ -221,6 +222,8 @@
     "@giphy/js-util": ["@giphy/js-util@5.2.0", "", { "dependencies": { "@giphy/js-types": "*", "uuid": "^9.0.0" } }, "sha512-Qt7pGh2cqiNmXLeWAgb459wK8+BuMLtIxTfg4ZksnPHPsLthiHT9hhzs2QhqUh7Pp/HOq+Cbv2etGDfnq+xiKA=="],
 
     "@giphy/react-components": ["@giphy/react-components@10.1.1", "", { "dependencies": { "@giphy/colors": "*", "@giphy/js-analytics": "*", "@giphy/js-fetch-api": "*", "@giphy/js-types": "*", "@giphy/js-util": "*", "intersection-observer": "^0.12.2", "react-use": "17.6.0", "throttle-debounce": "^3.0.1" }, "peerDependencies": { "react": "18 - 19", "styled-components": ">= 5" } }, "sha512-K5Qnipj+QEoZCMFRZ3PqxMv7FgTIP474xIUFFGFa9x6zJIx0OpilKOFqwNtJS/CtVu9VFmHNkDO/Y9xsHfdplA=="],
+
+    "@google/generative-ai": ["@google/generative-ai@0.24.1", "", {}, "sha512-MqO+MLfM6kjxcKoy0p1wRzG3b4ZZXtPI+z2IE26UogS2Cm/XHO+7gGRBh6gcJsOiIVoH93UwKvW4HdgiOZCy9Q=="],
 
     "@hookform/resolvers": ["@hookform/resolvers@3.10.0", "", { "peerDependencies": { "react-hook-form": "^7.0.0" } }, "sha512-79Dv+3mDF7i+2ajj7SkypSKHhl1cbln1OGavqrsF7p6mbUv11xpqpacPsGDCTRvCSjEEIez2ef1NveSVL3b0Ag=="],
 

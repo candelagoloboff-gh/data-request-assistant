@@ -8,7 +8,7 @@ import { DialogLayerProvider } from '@material-hu/components/layers/Dialogs';
 import { DrawerLayerProvider } from '@material-hu/components/layers/Drawers';
 import { MenuLayerProvider } from '@material-hu/components/layers/Menus';
 
-import { HomePage } from './pages/Home';
+import { ChatPage } from './pages/Chat';
 import './i18n';
 
 const theme = createHuGoTheme();
@@ -25,7 +25,7 @@ const App = () => {
                 <Routes>
                   <Route
                     path="/"
-                    element={<HomePage />}
+                    element={<ChatPage />}
                   />
                 </Routes>
               </BrowserRouter>

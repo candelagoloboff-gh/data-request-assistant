@@ -17,6 +17,7 @@
     "lint-fix": "biome check --write ./src"
   },
   "dependencies": {
+    "@google/generative-ai": "^0.24.1",
     "@hookform/resolvers": "^3.10.0",
     "@tanstack/react-query": "^5",
     "axios": "^0.27.2",
