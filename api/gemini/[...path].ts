@@ -5,9 +5,9 @@ const REDASH_QUERY_IDS = {
   instance_name: 37656,
   segmentation: 37101,
   profile_fields: 34936,
-  pr_cycles: 8940,
+  pr_cycles: 37715,
   goals_cycles: 37650,
-  sm_categories: 37673,
+  sm_categories: 37716,
   forms: 37654,
   courses: 37655,
 };
@@ -252,7 +252,7 @@ async function fetchVariables(
       return await runRedashQuery(REDASH_QUERY_IDS.search_instance, { search: searchTerm ?? '' });
     }
     if (type === 'pr_cycles') {
-      return await runRedashQuery(REDASH_QUERY_IDS.pr_cycles, { 'Instance ID': instanceId });
+      return await runRedashQuery(REDASH_QUERY_IDS.pr_cycles, { instance_id: instanceId });
     }
     if (type === 'goals_cycles') {
       return await runRedashQuery(REDASH_QUERY_IDS.goals_cycles, { instance: instanceId });
@@ -274,8 +274,7 @@ async function fetchVariables(
       return await runRedashQuery(REDASH_QUERY_IDS.profile_fields, { instance: instanceId });
     }
     if (type === 'sm_categories') {
-      const rows = await runRedashQuery(REDASH_QUERY_IDS.sm_categories, { instanceId });
-      return rows.filter((row) => row.estado === 'ACTIVE');
+      return await runRedashQuery(REDASH_QUERY_IDS.sm_categories, { instance_id: instanceId });
     }
     if (type === 'forms') {
       const rows = await runRedashQuery(REDASH_QUERY_IDS.forms, { instanceId });
