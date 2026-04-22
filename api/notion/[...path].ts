@@ -202,9 +202,8 @@ export default async function handler(req: any, res: any) {
       const errorText = await notionRes.text();
       console.error('[notion/cards] Notion API error:', errorText);
 
-      // Retry without optional properties that may not exist in the database schema
+      // Retry without fields that may not exist in the database schema yet
       const safeProps = { ...properties };
-      delete safeProps['Archivos y multimedia'];
       delete safeProps['Casos similares'];
       delete safeProps['Requester'];
       notionRes = await makeRequest(safeProps);

@@ -10,6 +10,7 @@ import { useDrawerLayer } from '@material-hu/components/layers/Drawers';
 import { IconSend2, IconRefresh, IconCheck, IconPencil } from '@material-hu/icons/tabler';
 
 import { BlankLayout } from '../../layouts/BlankLayout';
+import { useAuth } from '../../providers/AuthContext';
 import {
   sendChatMessage,
   createNotionCard,
@@ -42,6 +43,7 @@ const WELCOME_MESSAGE: VisibleMessage = {
 export function ChatPage() {
   const theme = useTheme();
   const { openDrawer, closeDrawer } = useDrawerLayer();
+  const { userName } = useAuth();
 
   const [visibleMessages, setVisibleMessages] = useState<VisibleMessage[]>([WELCOME_MESSAGE]);
   const [apiMessages, setApiMessages] = useState<Message[]>([]);
@@ -107,7 +109,11 @@ export function ChatPage() {
         ]);
         setApiMessages((prev) => [...prev, { role: 'model', content: response.content }]);
         const imagesCount = newApiMessages.reduce((acc, m) => acc + (m.images?.length ?? 0), 0);
-        setCardData({ ...response.card, ...(imagesCount ? { images_count: imagesCount } : {}) });
+        setCardData({
+          ...response.card,
+          ...(imagesCount ? { images_count: imagesCount } : {}),
+          ...(userName ? { requester: userName } : {}),
+        });
         // Fetch similar cards in background — attach to card for Notion only
         if (response.card.miniapps?.length) {
           fetchSimilarCards(response.card.miniapps).then((similar) => {
