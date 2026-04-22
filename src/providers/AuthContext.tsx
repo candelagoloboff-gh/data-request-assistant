@@ -3,20 +3,11 @@ import {
   type ReactNode,
   useCallback,
   useContext,
-  useMemo,
+  useEffect,
   useState,
 } from 'react';
 
 const TOKEN_KEY = 'auth_token';
-
-function decodeJWTPayload(token: string): Record<string, unknown> | null {
-  try {
-    const payload = token.split('.')[1];
-    return JSON.parse(atob(payload.replace(/-/g, '+').replace(/_/g, '/'))) as Record<string, unknown>;
-  } catch {
-    return null;
-  }
-}
 
 type AuthContextValue = {
   token: string | null;
@@ -28,10 +19,32 @@ type AuthContextValue = {
 
 const AuthContext = createContext<AuthContextValue | null>(null);
 
+async function fetchUserName(token: string): Promise<string | null> {
+  try {
+    const res = await fetch('/api/janus/userinfo', {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    if (!res.ok) return null;
+    const data = (await res.json()) as { name?: string; given_name?: string; email?: string };
+    return data.name ?? data.given_name ?? data.email ?? null;
+  } catch {
+    return null;
+  }
+}
+
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [token, setTokenState] = useState<string | null>(() =>
     sessionStorage.getItem(TOKEN_KEY),
   );
+  const [userName, setUserName] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (token) {
+      fetchUserName(token).then((name) => setUserName(name));
+    } else {
+      setUserName(null);
+    }
+  }, [token]);
 
   const setToken = useCallback((newToken: string) => {
     sessionStorage.setItem(TOKEN_KEY, newToken);
@@ -42,12 +55,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     sessionStorage.removeItem(TOKEN_KEY);
     setTokenState(null);
   }, []);
-
-  const userName = useMemo(() => {
-    if (!token) return null;
-    const payload = decodeJWTPayload(token);
-    return (payload?.name ?? payload?.given_name ?? payload?.email ?? null) as string | null;
-  }, [token]);
 
   return (
     <AuthContext.Provider

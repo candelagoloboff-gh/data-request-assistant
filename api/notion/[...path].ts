@@ -184,38 +184,47 @@ export default async function handler(req: any, res: any) {
       properties['Requester'] = { rich_text: notionText(card.requester) };
     }
 
-    const makeRequest = async (props: Record<string, unknown>) => {
-      return fetch(`${NOTION_API}/pages`, {
-        method: 'POST',
-        headers: {
-          Authorization: `Bearer ${process.env.NOTION_API_KEY!}`,
-          'Notion-Version': NOTION_VERSION,
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ parent: { database_id: process.env.NOTION_BOARD_DB_ID! }, properties: props }),
-      });
+    const notionHeaders = {
+      Authorization: `Bearer ${process.env.NOTION_API_KEY!}`,
+      'Notion-Version': NOTION_VERSION,
+      'Content-Type': 'application/json',
     };
 
-    let notionRes = await makeRequest(properties);
+    const notionRes = await fetch(`${NOTION_API}/pages`, {
+      method: 'POST',
+      headers: notionHeaders,
+      body: JSON.stringify({ parent: { database_id: process.env.NOTION_BOARD_DB_ID! }, properties }),
+    });
 
     if (!notionRes.ok) {
       const errorText = await notionRes.text();
       console.error('[notion/cards] Notion API error:', errorText);
-
-      // Retry without fields that may not exist in the database schema yet
-      const safeProps = { ...properties };
-      delete safeProps['Casos similares'];
-      delete safeProps['Requester'];
-      notionRes = await makeRequest(safeProps);
-
-      if (!notionRes.ok) {
-        const error2 = await notionRes.text();
-        console.error('[notion/cards] Notion API error (retry):', error2);
-        return res.status(500).json({ error: 'Error al crear la card en Notion' });
-      }
+      return res.status(500).json({ error: 'Error al crear la card en Notion' });
     }
 
     const page = (await notionRes.json()) as { id: string; url: string };
+
+    // Update optional fields one by one — each silently ignored if property doesn't exist in DB
+    const optionalFields: { name: string; value: unknown }[] = [];
+
+    if (card.file_urls?.length) {
+      optionalFields.push({ name: 'Archivos y multimedia', value: { rich_text: notionText(card.file_urls.join('\n')) } });
+    }
+    if (card.similar_cards?.length) {
+      optionalFields.push({ name: 'Casos similares', value: { rich_text: notionText(card.similar_cards.map((sc) => `${sc.name} ${sc.url}`).join('\n')) } });
+    }
+    if (card.requester) {
+      optionalFields.push({ name: 'Requester', value: { rich_text: notionText(card.requester) } });
+    }
+
+    for (const field of optionalFields) {
+      await fetch(`${NOTION_API}/pages/${page.id}`, {
+        method: 'PATCH',
+        headers: notionHeaders,
+        body: JSON.stringify({ properties: { [field.name]: field.value } }),
+      }).catch(() => {});
+    }
+
     return res.json({ id: page.id, url: page.url });
   } catch (err) {
     console.error('[notion/cards]', err);
