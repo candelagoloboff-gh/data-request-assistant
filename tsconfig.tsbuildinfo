@@ -1,0 +1,1 @@
+{"root":["./src/app.tsx","./src/i18n.ts","./src/main.tsx","./src/layouts/blanklayout/index.tsx","./src/layouts/dashboardlayout/index.tsx","./src/pages/chat/cardconfirmationcontent.tsx","./src/pages/chat/index.tsx","./src/pages/home/index.tsx","./src/services/axios.ts","./src/services/chat.ts","./src/types/material-hu.d.ts","./vite.config.ts"],"version":"6.0.3"}

@@ -1,10 +1,15 @@
 import { GoogleGenerativeAI, SchemaType } from '@google/generative-ai';
 
 const REDASH_QUERY_IDS = {
-  pr_cycles: 37586,
-  goals_cycles: 37587,
   search_instance: 37588,
+  instance_name: 37656,
   segmentation: 37101,
+  profile_fields: 34936,
+  pr_cycles: 8940,
+  goals_cycles: 37650,
+  sm_categories: 37673,
+  forms: 37654,
+  courses: 37655,
 };
 
 const SYSTEM_PROMPT = `Sos un asistente que ayuda a SAMs y OLs de Humand a cargar pedidos al equipo de Data.
@@ -45,16 +50,28 @@ IMPACTO (proponer según la criticidad descrita):
 5 = Improvement: nice-to-have / optimización
 
 REGLAS IMPORTANTES:
-- Si el SAM no menciona el instanceID pero sí el nombre del cliente/comunidad, usá get_variables con type="search_instance" y searchTerm=nombre_cliente para buscar el instanceID.
-- Cuando tenés el instanceID y sabés el módulo, usá get_variables para traer variables del módulo:
-  * type="pr_cycles" para Performance Review
-  * type="goals_cycles" para Goals
-  * type="segmentation" para segmentaciones
-- NO preguntes por Urgencia (el SAM la carga si quiere)
-- NO menciones el campo Difficulty al SAM (es interno para Data)
-- Hacé UNA pregunta a la vez, de forma amigable y concisa
-- Cuando tenés TODA la información necesaria, llamá a propose_card
-- Siempre respondé en español`;
+- Si el SAM menciona el instanceID directamente, usalo sin preguntar más.
+- Si no menciona el instanceID pero sí el nombre del cliente/comunidad, usá get_variables(type="search_instance", searchTerm=nombre_cliente) para encontrar el ID.
+- Cuando el SAM selecciona una instancia de search_instance, el formato es "[nombre] (ID: [id])". Extraé tanto el instanceID como el nombre de la comunidad y usá ambos en propose_card (campo nombre_comunidad).
+- NO preguntes si ya tenés la información en el mensaje del SAM. Leé bien antes de preguntar.
+- NO preguntes por Urgencia (el SAM la carga si quiere).
+- NO menciones el campo Difficulty al SAM (es interno para Data).
+- NUNCA hagas una pregunta de texto para que el SAM elija segmentaciones, campos de perfil, ciclos, servicios, formularios o cursos. SIEMPRE llamá get_variables para mostrar el desplegable real. Esto es obligatorio.
+- Cuando el SAM menciona necesitar filtros o variables y tenés el instanceID, llamá get_variables INMEDIATAMENTE para ese tipo:
+  * type="pr_cycles" → ciclos de Performance Review
+  * type="goals_cycles" → ciclos de Objetivos
+  * type="segmentation" → grupos de segmentación
+  * type="profile_fields" → campos de perfil de usuarios
+  * type="sm_categories" → categorías/servicios de Service Management
+  * type="forms" → formularios de la instancia
+  * type="courses" → categorías y cursos disponibles
+- Si el SAM pide múltiples tipos de variables (ej: segmentaciones Y campos de perfil), preguntá por UNO a la vez: primero llamá get_variables para el primero, esperá que el SAM seleccione, luego pedí el siguiente.
+- Si el SAM menciona filtrar "por cargo", "por área", "por departamento", "analizado por cargo", "analizado por área" o similares, llamá INMEDIATAMENTE get_variables con type="profile_fields" o type="segmentation" según corresponda, sin hacer ninguna pregunta de texto.
+- Hacé como máximo UNA pregunta o UNA llamada a get_variables por turno.
+- Cuando tenés toda la info necesaria, llamá a propose_card inmediatamente.
+- El campo "name" debe ser: "[tipo_de_solución] | [miniapp] | [nombre_comunidad]" (ej: "New Dashboard | Service Management | Farmacity"). Si hay múltiples miniapps, usá la principal. Máximo 8 palabras en total.
+- Siempre incluí nombre_comunidad. Si no lo sabés aún, el sistema lo busca automáticamente por instanceID.
+- Siempre respondé en español.`;
 
 const TOOLS = [
   {
@@ -72,7 +89,7 @@ const TOOLS = [
             },
             type: {
               type: SchemaType.STRING,
-              description: 'Tipo de variable: pr_cycles | goals_cycles | segmentation | search_instance',
+              description: 'Tipo de variable: pr_cycles | goals_cycles | segmentation | profile_fields | sm_categories | forms | courses | search_instance',
             },
             searchTerm: {
               type: SchemaType.STRING,
@@ -231,13 +248,37 @@ async function fetchVariables(
       return await runRedashQuery(REDASH_QUERY_IDS.search_instance, { search: searchTerm ?? '' });
     }
     if (type === 'pr_cycles') {
-      return await runRedashQuery(REDASH_QUERY_IDS.pr_cycles, { instance_id: instanceId });
+      return await runRedashQuery(REDASH_QUERY_IDS.pr_cycles, { 'Instance ID': instanceId });
     }
     if (type === 'goals_cycles') {
-      return await runRedashQuery(REDASH_QUERY_IDS.goals_cycles, { instance_id: instanceId });
+      return await runRedashQuery(REDASH_QUERY_IDS.goals_cycles, { instance: instanceId });
     }
     if (type === 'segmentation') {
-      return await runRedashQuery(REDASH_QUERY_IDS.segmentation, { instance_id: instanceId });
+      const rows = await runRedashQuery(REDASH_QUERY_IDS.segmentation, { instance_id: instanceId });
+      const seen = new Set<string>();
+      return rows.filter((row) => {
+        const grupo = String(row.grupo ?? '');
+        if (!grupo || seen.has(grupo)) return false;
+        seen.add(grupo);
+        return true;
+      });
+    }
+    if (type === 'instance_name') {
+      return await runRedashQuery(REDASH_QUERY_IDS.instance_name, { instance_id: instanceId });
+    }
+    if (type === 'profile_fields') {
+      return await runRedashQuery(REDASH_QUERY_IDS.profile_fields, { instance: instanceId });
+    }
+    if (type === 'sm_categories') {
+      const rows = await runRedashQuery(REDASH_QUERY_IDS.sm_categories, { instanceId });
+      return rows.filter((row) => row.estado === 'ACTIVE');
+    }
+    if (type === 'forms') {
+      const rows = await runRedashQuery(REDASH_QUERY_IDS.forms, { instanceId });
+      return rows.filter((row) => row.estado === 'ENABLED');
+    }
+    if (type === 'courses') {
+      return await runRedashQuery(REDASH_QUERY_IDS.courses, { instanceId });
     }
   } catch {
     // Return empty on error — AI will handle gracefully
@@ -259,7 +300,9 @@ export default async function handler(req: any, res: any) {
   }
 
   try {
-    const { messages } = req.body as { messages: { role: string; content: string }[] };
+    const { messages } = req.body as {
+      messages: { role: string; content: string; images?: { base64: string; mimeType: string }[] }[];
+    };
 
     if (!messages?.length) {
       return res.status(400).json({ error: 'messages is required' });
@@ -267,7 +310,7 @@ export default async function handler(req: any, res: any) {
 
     const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY!);
     const model = genAI.getGenerativeModel({
-      model: 'gemini-2.0-flash',
+      model: 'gemini-2.5-flash',
       tools: TOOLS,
       systemInstruction: SYSTEM_PROMPT,
     });
@@ -277,13 +320,23 @@ export default async function handler(req: any, res: any) {
       role: m.role === 'user' ? 'user' : 'model',
       parts: [{ text: m.content }],
     }));
-    const lastMessage = messages[messages.length - 1].content;
+    const lastMsg = messages[messages.length - 1];
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const lastMessageParts: any[] = [];
+    if (lastMsg.images?.length) {
+      for (const img of lastMsg.images) {
+        lastMessageParts.push({ inlineData: { data: img.base64, mimeType: img.mimeType } });
+      }
+    }
+    if (lastMsg.content) lastMessageParts.push({ text: lastMsg.content });
 
     const chat = model.startChat({ history });
 
     let lastVariables: { options: Record<string, unknown>[]; type: string } | null = null;
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    let currentMessage: any = lastMessage;
+    let currentMessage: any = lastMessageParts.length === 1 && lastMessageParts[0].text
+      ? lastMessageParts[0].text
+      : lastMessageParts;
 
     for (let iterations = 0; iterations < 5; iterations++) {
       const result = await chat.sendMessage(currentMessage);
@@ -319,10 +372,24 @@ export default async function handler(req: any, res: any) {
 
       for (const call of funcCalls) {
         if (call.name === 'propose_card') {
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          const cardArgs: any = { ...call.args };
+          if (!cardArgs.nombre_comunidad && cardArgs.instance_id) {
+            try {
+              const rows = await runRedashQuery(REDASH_QUERY_IDS.instance_name, {
+                instance_id: Number(cardArgs.instance_id),
+              });
+              const row = rows[0];
+              if (row) {
+                const name = row.name ?? row.Name ?? row.nombre ?? row.Nombre ?? row.community_name;
+                if (name) cardArgs.nombre_comunidad = String(name);
+              }
+            } catch { /* silently ignore */ }
+          }
           return res.json({
             type: 'card_ready',
             content: text || '¡Tengo todo listo! Revisá la card antes de crearla.',
-            card: call.args,
+            card: cardArgs,
           });
         }
 
@@ -333,9 +400,23 @@ export default async function handler(req: any, res: any) {
             searchTerm?: string;
           };
           const variables = await fetchVariables(instanceId, type, searchTerm);
-          lastVariables = { options: variables, type };
+
+          if (variables.length > 0) {
+            // Return options immediately to the user — don't loop further
+            return res.json({
+              type: 'message_with_options',
+              content: text || 'Seleccioná las opciones:',
+              options: variables,
+              variable_type: type,
+            });
+          }
+
+          // No results: inform the model and continue
           funcResponses.push({
-            functionResponse: { name: call.name, response: { variables } },
+            functionResponse: {
+              name: call.name,
+              response: { message: 'No se encontraron resultados para esos parámetros.' },
+            },
           });
         }
       }
