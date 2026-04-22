@@ -17,6 +17,7 @@ import {
   fetchSimilarCards,
   formatOptionLabel,
   formatOptionId,
+  VARIABLE_TYPE_TITLES,
   type Message,
   type MessageImage,
   type CardData,
@@ -392,9 +393,9 @@ export function ChatPage() {
                 >
                   <Typography
                     variant="caption"
-                    sx={{ px: 1, color: textColor.neutral.lighter, fontWeight: 600 }}
+                    sx={{ px: 1, color: textColor.neutral.default, fontWeight: 700, fontSize: '13px' }}
                   >
-                    Seleccioná una o más opciones:
+                    {VARIABLE_TYPE_TITLES[msg.options!.type] ?? 'Seleccioná una o más opciones:'}
                   </Typography>
                   {msg.options.items.slice(0, 20).map((opt, oi) => {
                     const optId = formatOptionId(opt as Record<string, unknown>, msg.options!.type);

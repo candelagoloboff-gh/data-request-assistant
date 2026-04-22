@@ -89,30 +89,42 @@ export async function fetchSimilarCards(miniapps: string[]): Promise<SimilarCard
   return res.json() as Promise<SimilarCard[]>;
 }
 
+export const VARIABLE_TYPE_TITLES: Record<string, string> = {
+  search_instance: 'Seleccioná la instancia del cliente',
+  pr_cycles: 'Seleccioná el ciclo de Performance Review',
+  goals_cycles: 'Seleccioná el ciclo de Objetivos',
+  segmentation: 'Seleccioná los grupos de segmentación',
+  profile_fields: 'Seleccioná los campos de perfil',
+  sm_categories: 'Seleccioná los servicios de Service Management',
+  forms: 'Seleccioná el formulario',
+  courses: 'Seleccioná el curso o categoría',
+};
+
 export function formatOptionLabel(row: Record<string, unknown>, type: string): string {
   if (type === 'search_instance') {
     return `${row.name} (ID: ${row.instanceId})`;
   }
-  if (type === 'pr_cycles' || type === 'goals_cycles') {
-    const start = row.startDate ?? row.start_date ?? row['Fecha inicio'];
-    const suffix = start ? ` · ${String(start).slice(0, 10)}` : '';
-    return `${row.name ?? row['Nombre'] ?? row.id}${suffix}`;
+  if (type === 'pr_cycles') {
+    return String(row.cycleName ?? row.name ?? row.id ?? '');
+  }
+  if (type === 'goals_cycles') {
+    return String(row.name ?? row.cycleName ?? row.id ?? '');
   }
   if (type === 'segmentation') {
-    return String(row.grupo ?? row['Grupo'] ?? '');
+    return String(row.grupo ?? '');
   }
   if (type === 'profile_fields') {
     return String(row.field_name ?? '');
   }
   if (type === 'sm_categories') {
-    return `${row.categoria} › ${row.servicio}`;
+    return String(row.categoria ?? row.name ?? '');
   }
   if (type === 'forms') {
-    return String(row.nombre ?? '');
+    return String(row.nombre ?? row.name ?? '');
   }
   if (type === 'courses') {
     const cat = row.categoria ?? row.category;
-    const name = row.nombre ?? row.name ?? row.curso ?? row.id ?? '';
+    const name = row.nombre ?? row.name ?? row.id ?? '';
     return cat ? `${cat} › ${name}` : String(name);
   }
   return String(row.name ?? row.nombre ?? row.id ?? JSON.stringify(row));
@@ -120,11 +132,12 @@ export function formatOptionLabel(row: Record<string, unknown>, type: string): s
 
 export function formatOptionId(row: Record<string, unknown>, type: string): string {
   if (type === 'search_instance') return String(row.instanceId);
-  if (type === 'pr_cycles' || type === 'goals_cycles') return String(row.id ?? row['ID']);
-  if (type === 'segmentation') return String(row.group_id ?? row.grupo ?? row['Grupo']);
+  if (type === 'pr_cycles') return String(row.cycleId ?? row.id ?? '');
+  if (type === 'goals_cycles') return String(row.id ?? '');
+  if (type === 'segmentation') return String(row.group_id ?? row.grupo ?? '');
   if (type === 'profile_fields') return String(row.field_id ?? '');
-  if (type === 'sm_categories') return String(row.service_id ?? row.category_id ?? '');
-  if (type === 'forms') return String(row.form_id ?? '');
+  if (type === 'sm_categories') return String(row.category_id ?? row.service_id ?? '');
+  if (type === 'forms') return String(row.form_id ?? row.id ?? '');
   if (type === 'courses') return String(row.id ?? row.course_id ?? '');
   return String(row.id ?? JSON.stringify(row));
 }
