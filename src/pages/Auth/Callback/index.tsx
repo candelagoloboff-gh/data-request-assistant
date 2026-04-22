@@ -26,11 +26,11 @@ const CallbackPage = () => {
       return;
     }
 
-    const janusUrl = import.meta.env.VITE_JANUS_URL as string;
     const clientId = import.meta.env.VITE_CLIENT_ID as string;
     const redirectUri = `${window.location.origin}/callback`;
 
-    fetch(`${janusUrl}/oauth2/token`, {
+    // Token exchange goes through server proxy to avoid CORS issues
+    fetch('/api/janus/token', {
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
       body: new URLSearchParams({
