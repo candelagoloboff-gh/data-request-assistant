@@ -73,7 +73,8 @@ REGLAS IMPORTANTES:
 - Siempre incluí nombre_comunidad. Si no lo sabés aún, el sistema lo busca automáticamente por instanceID.
 - Siempre respondé en español.`;
 
-const TOOLS = [
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const TOOLS: any[] = [
   {
     functionDeclarations: [
       {
