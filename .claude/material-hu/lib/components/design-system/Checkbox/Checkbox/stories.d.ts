@@ -1,0 +1,12 @@
+import { type Meta, type StoryObj } from '@storybook/react-vite';
+import CustomCheckbox from '.';
+declare const meta: Meta<typeof CustomCheckbox>;
+export default meta;
+type Story = StoryObj<typeof CustomCheckbox>;
+export declare const WithExtraInfo: Story;
+export declare const OnlyLabel: Story;
+export declare const Disabled: Story;
+export declare const Error: Story;
+export declare const Indeterminate: Story;
+export declare const WithLabelTooltip: Story;
+export declare const FormCheckboxStory: Story;

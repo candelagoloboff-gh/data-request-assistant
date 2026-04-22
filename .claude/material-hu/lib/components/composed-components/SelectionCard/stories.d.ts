@@ -1,0 +1,13 @@
+import { type Meta, type StoryObj } from '@storybook/react-vite';
+import SelectionCard from './';
+declare const meta: Meta<typeof SelectionCard>;
+export default meta;
+type Story = StoryObj<typeof SelectionCard>;
+export declare const Default: Story;
+export declare const Disabled: Story;
+export declare const FormSelectionCardDefaultStory: Story;
+export declare const FormSelectionCardRadioButtonStory: Story;
+export declare const FormSelectionCardCheckBoxStory: Story;
+export declare const FormSelectionCardOnlyOneOptionStory: Story;
+export declare const DisabledRadioListStory: Story;
+export declare const DisabledCheckboxListStory: Story;

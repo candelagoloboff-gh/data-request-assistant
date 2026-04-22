@@ -1,0 +1,11 @@
+import { type Meta, type StoryObj } from '@storybook/react';
+import SatisfactionDimensionsTable from './index';
+declare const meta: Meta<typeof SatisfactionDimensionsTable>;
+export default meta;
+type Story = StoryObj<typeof SatisfactionDimensionsTable>;
+export declare const Default: Story;
+export declare const WithScoreDifferences: Story;
+export declare const Loading: Story;
+export declare const EmptyState: Story;
+export declare const CustomTooltipTitle: Story;
+export declare const CustomLabels: Story;

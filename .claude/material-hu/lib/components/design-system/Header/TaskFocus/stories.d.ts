@@ -1,0 +1,14 @@
+import { type Meta, type StoryObj } from '@storybook/react-vite';
+import TaskFocusHeader from '.';
+declare const meta: Meta<typeof TaskFocusHeader>;
+export default meta;
+type Story = StoryObj<typeof TaskFocusHeader>;
+export declare const Default: Story;
+export declare const MinimalActions: Story;
+export declare const DropdownMainActions: Story;
+export declare const NoActions: Story;
+export declare const Loading: Story;
+export declare const NoPill: Story;
+export declare const NoMainOrExtraActions: Story;
+export declare const JustBack: Story;
+export declare const WithLargeTitle: Story;

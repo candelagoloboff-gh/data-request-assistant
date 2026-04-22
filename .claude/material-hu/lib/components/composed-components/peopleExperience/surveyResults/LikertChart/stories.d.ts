@@ -1,0 +1,14 @@
+import { type Meta, type StoryObj } from '@storybook/react';
+import LikertChart from './index';
+declare const meta: Meta<typeof LikertChart>;
+export default meta;
+type Story = StoryObj<typeof LikertChart>;
+export declare const Default: Story;
+export declare const AllPositive: Story;
+export declare const AllNegative: Story;
+export declare const Balanced: Story;
+export declare const NPSScale: Story;
+export declare const CustomCardStyle: Story;
+export declare const CustomStackStyle: Story;
+export declare const WithBarClick: Story;
+export declare const WithFooter: Story;

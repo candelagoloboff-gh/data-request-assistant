@@ -1,0 +1,26 @@
+import { type Meta, type StoryObj } from '@storybook/react-vite';
+import CollapsibleAutocompleteSelector from '.';
+type Category = {
+    id: number;
+    name: string;
+    description?: string;
+};
+declare const meta: Meta<typeof CollapsibleAutocompleteSelector<Category>>;
+export default meta;
+type Story = StoryObj<typeof CollapsibleAutocompleteSelector<Category>>;
+export declare const Default: Story;
+export declare const VirtualizationOff: Story;
+export declare const WithPreselectedItems: Story;
+export declare const WithManySelections: Story;
+export declare const ShowOnlyOnSearch: Story;
+export declare const WithoutSelectAll: Story;
+export declare const CustomPaginationLimit: Story;
+export declare const CustomMaxHeight: Story;
+export declare const EmptyState: Story;
+export declare const CustomStyles: Story;
+export declare const CustomMapper: Story;
+export declare const MultipleSelectors: Story;
+export declare const CollapsedByDefault: Story;
+export declare const InfiniteScroll: Story;
+export declare const UncontrolledAccordion: Story;
+export declare const ControlledVsUncontrolled: Story;

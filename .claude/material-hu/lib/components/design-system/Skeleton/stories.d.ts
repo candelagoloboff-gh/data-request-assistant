@@ -1,0 +1,10 @@
+import { type Meta, type StoryObj } from '@storybook/react-vite';
+import Skeleton from '.';
+declare const meta: Meta<typeof Skeleton>;
+export default meta;
+type Story = StoryObj<typeof Skeleton>;
+export declare const Default: Story;
+export declare const NotLoading: Story;
+export declare const Rectangular: Story;
+export declare const CircularWithFixedDimensions: Story;
+export declare const RoundedWithFixedDimensions: Story;

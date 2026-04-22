@@ -1,0 +1,10 @@
+import { type Meta, type StoryObj } from '@storybook/react-vite';
+import ProgressCircle from '.';
+declare const meta: Meta<typeof ProgressCircle>;
+export default meta;
+type Story = StoryObj<typeof ProgressCircle>;
+export declare const Default: Story;
+export declare const NoText: Story;
+export declare const DecimalPrecision: Story;
+export declare const Color: Story;
+export declare const Loading: Story;

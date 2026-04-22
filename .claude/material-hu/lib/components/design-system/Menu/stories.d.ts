@@ -1,0 +1,12 @@
+import { type Meta, type StoryObj } from '@storybook/react-vite';
+import { Menu } from '.';
+declare const meta: Meta<typeof Menu>;
+export default meta;
+type Story = StoryObj<typeof meta>;
+export declare const Default: Story;
+export declare const WithFooter: Story;
+export declare const WithHeaderAndFooter: Story;
+export declare const ManyOptions: Story;
+export declare const ManyOptionsAndFooter: Story;
+export declare const LeftAlign: Story;
+export declare const RightAlign: Story;

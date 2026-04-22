@@ -1,0 +1,14 @@
+import { type Meta, type StoryObj } from '@storybook/react-vite';
+import FormInputTimeRange from './form';
+import InputTimeRange from '.';
+declare const meta: Meta<typeof InputTimeRange>;
+export default meta;
+type Story = StoryObj<typeof InputTimeRange>;
+export declare const Default: Story;
+export declare const WithValues: Story;
+export declare const WithError: Story;
+export declare const Disabled: Story;
+export declare const FullWidth: Story;
+type FormStory = StoryObj<typeof FormInputTimeRange>;
+export declare const FormDefault: FormStory;
+export declare const FormWithValidation: FormStory;

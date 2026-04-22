@@ -1,0 +1,17 @@
+import { type Meta, type StoryObj } from '@storybook/react-vite';
+import Heatmap from './index';
+declare const meta: Meta<typeof Heatmap>;
+export default meta;
+type Story = StoryObj<typeof Heatmap>;
+export declare const Default: Story;
+export declare const ShowingDifferences: Story;
+export declare const QuestionsView: Story;
+export declare const BossesSegment: Story;
+export declare const Loading: Story;
+export declare const WithScoreSelectDisabled: Story;
+export declare const WithNullData: Story;
+export declare const RestrictedToParent: Story;
+export declare const LowScores: Story;
+export declare const HighScores: Story;
+export declare const LowScoresDifferences: Story;
+export declare const HighScoresDifferences: Story;

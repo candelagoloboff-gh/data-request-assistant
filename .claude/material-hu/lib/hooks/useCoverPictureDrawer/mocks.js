@@ -1,0 +1,2 @@
+export const mockImage = 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fimagenes.20minutos.es%2Fuploads%2Fimagenes%2F2024%2F05%2F15%2Funa-imagen-creada-por-la-herramienta-imagen-3-de-google.jpeg&f=1&nofb=1&ipt=14a3f0f9f5cd7a85de34990d17d6ec5d2ddb9d80c483c2dc984d1a4d2a9e181c';
+export const mockDefault = 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%2Fid%2FOIP.3l2nfzcHhMemSZooiH3B3AHaFj%3Fpid%3DApi&f=1&ipt=49e9c84250d172ea95a93a82c6627b6a64179812ac3e6f024b256f72330dfbce';

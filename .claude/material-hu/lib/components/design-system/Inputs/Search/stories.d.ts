@@ -1,0 +1,11 @@
+import { type Meta, type StoryObj } from '@storybook/react-vite';
+import InputSearch from '.';
+declare const meta: Meta<typeof InputSearch>;
+export default meta;
+type Story = StoryObj<typeof InputSearch>;
+export declare const Default: Story;
+export declare const Custom: Story;
+export declare const Error: Story;
+export declare const Success: Story;
+export declare const Disabled: Story;
+export declare const FormSearchStory: Story;

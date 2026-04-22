@@ -1,0 +1,10 @@
+import { Fab } from '@mui/material';
+import { type Meta, type StoryObj } from '@storybook/react-vite';
+declare const meta: Meta<typeof Fab>;
+export default meta;
+type Story = StoryObj<typeof meta>;
+export declare const Default: Story;
+export declare const NoTextSmall: Story;
+export declare const NoTextSmallDisabled: Story;
+export declare const NoTextLarge: Story;
+export declare const NoTextLargeDisabled: Story;

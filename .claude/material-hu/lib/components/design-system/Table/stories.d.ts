@@ -1,0 +1,16 @@
+import { type Meta, type StoryObj } from '@storybook/react-vite';
+import Table from '.';
+declare const meta: Meta;
+export default meta;
+type Story = StoryObj<typeof Table>;
+export declare const Default: Story;
+export declare const DefaultWithOnClick: Story;
+export declare const SelectionTable: Story;
+export declare const CollapsableTable: Story;
+export declare const Loading: Story;
+export declare const ActionsMenu: Story;
+export declare const Toolbar: Story;
+export declare const Tooltips: Story;
+export declare const InfiniteScrolling: Story;
+export declare const Sorting: Story;
+export declare const SortingWithTooltip: Story;

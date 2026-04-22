@@ -1,0 +1,149 @@
+{
+  "name": "@humanddev/material-hu",
+  "version": "1.0.1",
+  "description": "",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
+  "files": [
+    "lib",
+    "vite",
+    "dropzone",
+    "tinymce"
+  ],
+  "exports": {
+    "./vite": {
+      "types": "./vite/lib/index.d.ts",
+      "default": "./vite/lib/index.js"
+    },
+    "./vite/hu-translations/clientSocketHandler": "./vite/hu-translations/clientSocketHandler.ts",
+    "./dropzone": "./dropzone/index.ts",
+    "./tinymce": "./tinymce/index.ts"
+  },
+  "scripts": {
+    "biome:check": "biome check ./src ./vite",
+    "biome:lint": "biome lint ./src ./vite --diagnostic-level=error",
+    "biome:format": "biome format ./src ./vite --diagnostic-level=error",
+    "biome:fix": "biome check --write ./src ./vite",
+    "lint": "npm run biome:lint && npm run biome:format",
+    "lint-fix": "biome check --write ./src ./vite",
+    "tsc:src": "tsc -p tsconfig.build.json --noEmitOnError && tsc-alias -p tsconfig.build.json",
+    "tsc:vite": "tsc -p tsconfig.vite.json --noEmitOnError",
+    "tsc:assets": "cp -r src/assets lib/assets",
+    "tsc": "npm run tsc:src && npm run tsc:assets && npm run tsc:vite",
+    "prepush:tsc-guard": "npm run tsc && node scripts/verify-generated-artifacts.mjs",
+    "tsc:ci:src": "tsc -p tsconfig.build.json --outDir testDirectory --noEmitOnError && tsc-alias -p tsconfig.build.json --outDir testDirectory",
+    "tsc:ci:vite": "tsc -p tsconfig.vite.json --outDir testDirectory/vite --noEmitOnError",
+    "tsc:ci": "npm run tsc:ci:src && npm run tsc:ci:vite",
+    "start-storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build",
+    "prepare": "husky"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HumandDev/material-hu.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/HumandDev/material-hu/issues"
+  },
+  "homepage": "https://github.com/HumandDev/material-hu#readme",
+  "dependencies": {
+    "@dnd-kit/core": "^6.3.1",
+    "@dnd-kit/modifiers": "^9.0.0",
+    "@dnd-kit/sortable": "^10.0.0",
+    "@floating-ui/dom": "^1.7.3",
+    "@giphy/js-fetch-api": "^5.7.0",
+    "@giphy/react-components": "^10.1.1",
+    "@hookform/resolvers": "^4.1.3",
+    "@mui/x-date-pickers": "^7.0.0",
+    "@mui/x-date-pickers-v6": "npm:@mui/x-date-pickers@^6.20.2",
+    "@tanstack/react-virtual": "^3.13.14",
+    "@tinymce/tinymce-react": "^4.3.2",
+    "@tiptap/extension-emoji": "^3.19.0",
+    "@tiptap/extension-file-handler": "^3.2.0",
+    "@tiptap/extension-highlight": "^3.0.9",
+    "@tiptap/extension-image": "^3.0.9",
+    "@tiptap/extension-table": "^3.17.1",
+    "@tiptap/extension-text-align": "^3.0.9",
+    "@tiptap/extension-text-style": "^3.0.9",
+    "@tiptap/pm": "^3.0.9",
+    "@tiptap/react": "^3.0.9",
+    "@tiptap/starter-kit": "^3.0.9",
+    "chart.js": "^4.5.1",
+    "chartjs-chart-matrix": "^3.0.0",
+    "chartjs-chart-treemap": "^3.1.0",
+    "chartjs-plugin-annotation": "^3.1.0",
+    "chartjs-plugin-datalabels": "^2.2.0",
+    "date-fns": "^2.30.0",
+    "date-fns-tz": "^2.0.1",
+    "dompurify": "^3.2.4",
+    "emoji-picker-react": "^4.18.0",
+    "libphonenumber-js": "^1.10.10",
+    "lodash": "^4.17.21",
+    "mui-tel-input": "^2.1.0",
+    "notistack": "^3.0.1",
+    "react-avatar-editor": "^13.0.2",
+    "react-chartjs-2": "^5.3.0",
+    "react-dropzone": "^14.2.3",
+    "react-intersection-observer": "^9.15.1",
+    "react-material-ui-carousel": "^3.4.2",
+    "react-pdf": "^9.2.1",
+    "react-signature-canvas": "^1.1.0-alpha.2",
+    "react-window": "^2.1.1",
+    "uuid": "^13.0.0",
+    "uuidv7": "^1.1.0",
+    "zod": "^4.1.13"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.3.13",
+    "@chromatic-com/storybook": "^4.0.0",
+    "@storybook/addon-docs": "^9.0.1",
+    "@storybook/addon-links": "^9.0.1",
+    "@storybook/react-vite": "^9.0.1",
+    "@types/dompurify": "^3.0.5",
+    "@types/lodash": "^4.14.202",
+    "@types/node": "^20.17.27",
+    "@types/react-avatar-editor": "^13.0.2",
+    "hu-translations": "github:HumandDev/hu-translations",
+    "humand-biome-config": "github:HumandDev/humand-biome-config",
+    "husky": "^9.1.7",
+    "react-perfect-scrollbar": "^1.5.8",
+    "storybook": "^9.0.1",
+    "tsc-alias": "^1.8.16",
+    "typescript": "^5.8.3"
+  },
+  "peerDependencies": {
+    "@emotion/react": "^11.13.5",
+    "@emotion/styled": "^11.13.5",
+    "@mui/icons-material": "^5.11.16",
+    "@mui/lab": "^5.0.0-alpha.177",
+    "@mui/material": "^5.16.8",
+    "@tabler/icons-react": "^3.34.1",
+    "i18next": "^21.3.1",
+    "react": "^18.2.0 || ^18.3.0",
+    "react-dom": "^18.2.0 || ^18.3.0",
+    "react-hook-form": "7.54.2",
+    "react-i18next": "^11.13.0",
+    "react-perfect-scrollbar": "^1.5.8",
+    "react-query": "^3.39.2",
+    "react-router": "^6.26.2",
+    "react-router-dom": "^6.26.2",
+    "vite": "^6.0.3"
+  },
+  "overrides": {
+    "storybook": "$storybook"
+  },
+  "engines": {
+    "node": "24.11.1",
+    "npm": "11.6.2"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not op_mini all"
+  ]
+}

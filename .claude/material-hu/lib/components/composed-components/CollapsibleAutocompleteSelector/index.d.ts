@@ -1,0 +1,4 @@
+import { type CollapsibleAutocompleteSelectorProps } from './types';
+declare function CollapsibleAutocompleteSelector<T = unknown>({ infiniteQuery, sectionTitle, lackingOptionsMessage, paginationLimit, customMapper, isExpanded: isExpandedProp, setExpanded, defaultExpanded, showOnlyOnSearch, getItemId, sx, renderContent, selectAllLabel, noResultsLabel, formatAndMore, withSelectAll, maxHeight, selectionLimit, virtualized, rowHeight, listHeight: inheritedListHeight, itemRenderer, ...controlProps }: CollapsibleAutocompleteSelectorProps<T>): import("react/jsx-runtime").JSX.Element;
+export type { CollapsibleAutocompleteSelectorProps, FieldOption, InfiniteQueryFn, InfiniteQueryOptions, InfiniteQueryParams, InfiniteQueryResult, PaginatedPage, RenderContentParams, } from './types';
+export default CollapsibleAutocompleteSelector;

@@ -1,0 +1,11 @@
+import { type Meta, type StoryObj } from '@storybook/react-vite';
+import Property from '.';
+declare const meta: Meta<typeof Property>;
+export default meta;
+type Story = StoryObj<typeof Property>;
+export declare const Default: Story;
+export declare const WithDescription: Story;
+export declare const WithVariant: Story;
+export declare const WithVisibleFalse: Story;
+export declare const WithLoading: Story;
+export declare const WithLoadingAndVariant: Story;

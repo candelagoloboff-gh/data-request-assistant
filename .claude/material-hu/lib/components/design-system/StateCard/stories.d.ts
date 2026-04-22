@@ -1,0 +1,13 @@
+import { type Meta, type StoryObj } from '@storybook/react';
+import StateCard from '.';
+declare const meta: Meta<typeof StateCard>;
+export default meta;
+type Story = StoryObj<typeof StateCard>;
+export declare const Default: Story;
+export declare const Success: Story;
+export declare const Error: Story;
+export declare const Warning: Story;
+export declare const WifiOff: Story;
+export declare const WithIcon: Story;
+export declare const WithAction: Story;
+export declare const WithSecondaryAction: Story;

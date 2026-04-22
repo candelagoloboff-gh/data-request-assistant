@@ -1,0 +1,11 @@
+import { type Meta, type StoryObj } from '@storybook/react-vite';
+import Pagination from '.';
+declare const meta: Meta<typeof Pagination>;
+export default meta;
+type Story = StoryObj<typeof Pagination>;
+export declare const Default: Story;
+export declare const Basic: Story;
+export declare const Loading: Story;
+export declare const Disabled: Story;
+export declare const CustomSx: Story;
+export declare const FormPaginationStory: Story;

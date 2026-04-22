@@ -1,0 +1,12 @@
+import { type Meta, type StoryObj } from '@storybook/react';
+import CheckboxBase from './index';
+declare const meta: Meta<typeof CheckboxBase>;
+export default meta;
+type Story = StoryObj<typeof CheckboxBase>;
+export declare const Default: Story;
+export declare const Checked: Story;
+export declare const Indeterminate: Story;
+export declare const Disabled: Story;
+export declare const DisabledChecked: Story;
+export declare const WithError: Story;
+export declare const CustomColors: Story;

@@ -1,0 +1,15 @@
+import { type Meta, type StoryObj } from '@storybook/react-vite';
+import ProgressCircleChart from '.';
+declare const meta: Meta<typeof ProgressCircleChart>;
+export default meta;
+type Story = StoryObj<typeof ProgressCircleChart>;
+export declare const Default: Story;
+export declare const LowProgress: Story;
+export declare const MediumProgress: Story;
+export declare const HighProgress: Story;
+export declare const Complete: Story;
+export declare const CustomColor: Story;
+export declare const WithOneDecimal: Story;
+export declare const WithTwoDecimals: Story;
+export declare const MultipleCharts: Story;
+export declare const ColorVariations: Story;

@@ -1,0 +1,11 @@
+import { type Meta, type StoryObj } from '@storybook/react';
+import SelectChart from './index';
+declare const meta: Meta<typeof SelectChart>;
+export default meta;
+type Story = StoryObj<typeof SelectChart>;
+export declare const Default: Story;
+export declare const FewOptions: Story;
+export declare const ManyOptions: Story;
+export declare const LongLabels: Story;
+export declare const WithSegmentClick: Story;
+export declare const WithFooter: Story;

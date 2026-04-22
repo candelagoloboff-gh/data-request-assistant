@@ -1,0 +1,3 @@
+export declare const IndividualCriteriaContext: import("react").Context<Omit<import("../../../audience/IndividualSelection/types").IndividualSelectionProps, "onChange" | "value" | "searchValue" | "onSearch"> | null>;
+export declare const IndividualCriteriaProvider: import("react").Provider<Omit<import("../../../audience/IndividualSelection/types").IndividualSelectionProps, "onChange" | "value" | "searchValue" | "onSearch"> | null>;
+export declare const useIndividualCriteriaContext: () => Omit<import("../../../audience/IndividualSelection/types").IndividualSelectionProps, "onChange" | "value" | "searchValue" | "onSearch"> | null;

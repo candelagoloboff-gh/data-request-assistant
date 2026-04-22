@@ -1,0 +1,15 @@
+import { type Meta, type StoryObj } from '@storybook/react-vite';
+import Title from '.';
+declare const meta: Meta<typeof Title>;
+export default meta;
+type Story = StoryObj<typeof Title>;
+export declare const Default: Story;
+export declare const RegularWeight: Story;
+export declare const Disabled: Story;
+export declare const Centered: Story;
+export declare const Right: Story;
+export declare const LongTextWithWrap: Story;
+export declare const LongTextWithEllipsis: Story;
+export declare const LongTextWithEllipsisAndIcons: Story;
+export declare const LongTextWithEllipsisAndOverflowTooltip: Story;
+export declare const LongTextWithEllipsisInFlexbox: Story;

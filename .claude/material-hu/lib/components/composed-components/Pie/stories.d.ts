@@ -1,0 +1,13 @@
+import { type Meta, type StoryObj } from '@storybook/react-vite';
+import Pie from '.';
+declare const meta: Meta<typeof Pie>;
+export default meta;
+type Story = StoryObj<typeof Pie>;
+export declare const Default: Story;
+export declare const WithLongLegend: Story;
+export declare const WithLegend: Story;
+export declare const NoText: Story;
+export declare const Colors: Story;
+export declare const Loading: Story;
+export declare const NoTextLoading: Story;
+export declare const WithLegendLoading: Story;

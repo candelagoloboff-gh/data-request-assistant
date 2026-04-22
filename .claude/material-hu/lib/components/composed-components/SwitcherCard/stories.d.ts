@@ -1,0 +1,11 @@
+import { type Meta, type StoryObj } from '@storybook/react-vite';
+import SwitcherCard from '.';
+declare const meta: Meta<typeof SwitcherCard>;
+export default meta;
+type Story = StoryObj<typeof SwitcherCard>;
+export declare const Default: Story;
+export declare const WithTooltip: Story;
+export declare const Disabled: Story;
+export declare const InitiallyOpen: Story;
+export declare const WithCallback: Story;
+export declare const WithForm: Story;

@@ -1,0 +1,13 @@
+import { type Meta, type StoryObj } from '@storybook/react-vite';
+import SnackbarWrapper from './SnackbarWraper';
+declare const meta: Meta<typeof SnackbarWrapper>;
+export default meta;
+type Story = StoryObj<typeof SnackbarWrapper>;
+export declare const Default: Story;
+export declare const Success: Story;
+export declare const Error: Story;
+export declare const Warning: Story;
+export declare const Info: Story;
+export declare const OnlyTitle: Story;
+export declare const WithCancelAction: Story;
+export declare const WithLongText: Story;

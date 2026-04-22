@@ -1,0 +1,13 @@
+import { type Meta, type StoryObj } from '@storybook/react-vite';
+import Switcher from '.';
+declare const meta: Meta<typeof Switcher>;
+export default meta;
+type Story = StoryObj<typeof Switcher>;
+export declare const Default: Story;
+export declare const NoTitle: Story;
+export declare const Disabled: Story;
+export declare const Checked: Story;
+export declare const WithIcon: Story;
+export declare const WithMessageOnDisabled: Story;
+export declare const FormSwitcherStory: Story;
+export declare const CustomTitleAndDescription: Story;

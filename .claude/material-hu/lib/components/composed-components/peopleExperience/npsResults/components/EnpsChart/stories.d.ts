@@ -1,0 +1,12 @@
+import { type Meta, type StoryObj } from '@storybook/react';
+import EnpsChart from '.';
+declare const meta: Meta<typeof EnpsChart>;
+export default meta;
+type Story = StoryObj<typeof EnpsChart>;
+export declare const WithNavigableLabelTicks: Story;
+export declare const WithNavigableLabelTicksFewItems: Story;
+export declare const LoadingState: Story;
+export declare const EmptyState: Story;
+export declare const WithNullValues: Story;
+export declare const WithNullValuesComparison: Story;
+export declare const WithHighlightDataMixedDescriptions: Story;

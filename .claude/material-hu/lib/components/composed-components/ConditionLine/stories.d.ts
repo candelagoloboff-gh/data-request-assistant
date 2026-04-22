@@ -1,0 +1,10 @@
+import { type Meta, type StoryObj } from '@storybook/react';
+import ConditionLine from './index';
+declare const meta: Meta<typeof ConditionLine>;
+export default meta;
+type Story = StoryObj<typeof meta>;
+export declare const Default: Story;
+export declare const Disabled: Story;
+export declare const Loading: Story;
+export declare const Error: Story;
+export declare const WithForm: Story;

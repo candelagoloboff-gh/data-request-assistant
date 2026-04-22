@@ -1,0 +1,14 @@
+import { type Meta, type StoryObj } from '@storybook/react-vite';
+import { PdfFullScreen } from './components/FullScreen';
+import PdfViewer from '.';
+declare const meta: Meta<typeof PdfViewer>;
+declare const fullScreenMetadata: Meta<typeof PdfFullScreen>;
+export default meta;
+export { fullScreenMetadata as PdfFullScreenMeta };
+type Story = StoryObj<typeof PdfViewer>;
+type FullScreenStory = StoryObj<typeof PdfFullScreen>;
+export declare const Default: Story;
+export declare const FloatingVariant: Story;
+export declare const FullScreenWithHeader: Story;
+export declare const WithoutFullScreenAndRotation: Story;
+export declare const FullScreenWithFetching: FullScreenStory;

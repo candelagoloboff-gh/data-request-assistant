@@ -1,0 +1,10 @@
+import { type Meta, type StoryObj } from '@storybook/react-vite';
+import Image from '.';
+declare const meta: Meta<typeof Image>;
+export default meta;
+type Story = StoryObj<typeof Image>;
+export declare const Default: Story;
+export declare const WithDefaultSrc: Story;
+export declare const WithAspectRatio: Story;
+export declare const WithLoading: Story;
+export declare const WithLoadingAndAspectRatio: Story;

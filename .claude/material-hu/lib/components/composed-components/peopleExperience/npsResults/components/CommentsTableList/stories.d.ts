@@ -1,0 +1,18 @@
+import { type Meta, type StoryObj } from '@storybook/react';
+import CommentsTableList from '.';
+declare const meta: Meta<typeof CommentsTableList>;
+export default meta;
+type Story = StoryObj<typeof CommentsTableList>;
+export declare const Default: Story;
+export declare const FilteredPromoters: Story;
+export declare const FilteredDetractors: Story;
+export declare const FilteredNeutrals: Story;
+export declare const WithCustomTitle: Story;
+export declare const WithCustomColumnHeadings: Story;
+export declare const WithCustomTitleAndColumns: Story;
+export declare const WithMoreData: Story;
+export declare const WithDescriptions: Story;
+export declare const Loading: Story;
+export declare const EmptyState: Story;
+export declare const ShortComments: Story;
+export declare const EmptyStateWithCard: Story;

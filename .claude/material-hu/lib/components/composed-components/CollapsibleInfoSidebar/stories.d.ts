@@ -1,0 +1,11 @@
+import { type Meta, type StoryObj } from '@storybook/react-vite';
+import CollapsibleInfoSidebar from '.';
+declare const meta: Meta<typeof CollapsibleInfoSidebar>;
+export default meta;
+type Story = StoryObj<typeof CollapsibleInfoSidebar>;
+export declare const Default: Story;
+export declare const PositionLeft: Story;
+export declare const DefaultExpanded: Story;
+export declare const AlwaysExpanded: Story;
+export declare const CustomWidth: Story;
+export declare const SingleItem: Story;

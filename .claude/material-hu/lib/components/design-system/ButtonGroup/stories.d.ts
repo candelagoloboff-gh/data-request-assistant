@@ -1,0 +1,14 @@
+import { type Meta, type StoryObj } from '@storybook/react-vite';
+import ButtonGroup from '.';
+declare const meta: Meta<typeof ButtonGroup>;
+export default meta;
+type Story = StoryObj<typeof ButtonGroup>;
+export declare const Default: Story;
+export declare const hideCheckIcon: Story;
+export declare const Two: Story;
+export declare const Three: Story;
+export declare const DisabledUnselect: Story;
+export declare const FixedTextIcon: Story;
+export declare const WithOnChange: Story;
+export declare const FullWidth: Story;
+export declare const WithButton: Story;

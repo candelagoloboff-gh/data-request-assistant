@@ -1,0 +1,36 @@
+import { type Meta, type StoryObj } from '@storybook/react-vite';
+import RadioButton from '.';
+type Story = StoryObj<typeof RadioButton>;
+declare const _default: Meta<typeof RadioButton>;
+export default _default;
+export declare const DefaultStory: Story;
+export declare const Description: Story;
+export declare const ExtraData: Story;
+export declare const DescriptionAndExtraData: Story;
+export declare const AvatarAndDescriptionData: Story;
+export declare const Error: Story;
+export declare const DisabledState: import("storybook/internal/csf").AnnotatedStoryFn<import("@storybook/react-vite").ReactRenderer, {
+    error?: boolean;
+    isActive?: boolean;
+    label: string;
+    extraData?: string;
+    description?: string;
+    onClick?: (param: boolean) => void;
+    stackSx?: import("@mui/material").SxProps;
+    labelProps?: import("@mui/material").TypographyProps;
+    avatarProps?: import("../../Avatar").AvatarProps;
+} & Omit<import("@mui/material").RadioProps, "label" | "onClick">>;
+export declare const ActiveDisabled: import("storybook/internal/csf").AnnotatedStoryFn<import("@storybook/react-vite").ReactRenderer, {
+    error?: boolean;
+    isActive?: boolean;
+    label: string;
+    extraData?: string;
+    description?: string;
+    onClick?: (param: boolean) => void;
+    stackSx?: import("@mui/material").SxProps;
+    labelProps?: import("@mui/material").TypographyProps;
+    avatarProps?: import("../../Avatar").AvatarProps;
+} & Omit<import("@mui/material").RadioProps, "label" | "onClick">>;
+export declare const CustomContainerStyling: Story;
+export declare const WithForm: Story;
+export declare const FormSelectionCardOnlyOneOptionStory: Story;

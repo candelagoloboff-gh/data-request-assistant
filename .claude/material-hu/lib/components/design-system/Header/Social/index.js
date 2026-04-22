@@ -1,0 +1,13 @@
+import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
+import Avatar from '../../Avatar';
+import { IconArrowLeft, IconX } from '@tabler/icons-react';
+import HeaderActions from '../components/HeaderActions';
+import HeaderContainer from '../components/HeaderContainer';
+import HeaderExtraActions from '../components/HeaderExtraActions';
+import HeaderIconButton from '../components/HeaderIconButton';
+import HeaderInfo from '../components/HeaderInfo';
+import HeaderMainActions from '../components/HeaderMainActions';
+import HeaderPill from '../components/HeaderPill';
+import HeaderTitle from '../components/HeaderTitle';
+const SocialHeader = ({ avatar, title, pillLabel, mainActions = [], extraActions = [], onClose, onBack, slotProps, copyLinkButton, loading, }) => (_jsxs(HeaderContainer, { slotProps: slotProps, children: [_jsxs(HeaderInfo, { copyLinkButton: !loading ? copyLinkButton : undefined, children: [_jsx(HeaderIconButton, { Icon: IconArrowLeft, onClick: onBack, loading: loading }), _jsx(Avatar, { loading: loading, ...avatar, ...slotProps?.avatar }), _jsx(HeaderTitle, { title: title, loading: loading, slotProps: slotProps?.title }), _jsx(HeaderPill, { label: pillLabel, loading: loading, pillProps: slotProps?.pill })] }), _jsxs(HeaderActions, { children: [_jsx(HeaderMainActions, { actions: mainActions, loading: loading }), _jsx(HeaderExtraActions, { actions: extraActions, loading: loading, closeDropdownOnClick: slotProps?.extraActions?.closeDropdownOnClick }), _jsx(HeaderIconButton, { Icon: IconX, onClick: onClose, loading: loading })] })] }));
+export default SocialHeader;

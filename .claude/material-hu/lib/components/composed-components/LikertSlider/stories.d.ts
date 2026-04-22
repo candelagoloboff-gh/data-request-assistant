@@ -1,0 +1,10 @@
+import { type Meta, type StoryObj } from '@storybook/react-vite';
+import LikertSlider from '.';
+declare const meta: Meta<typeof LikertSlider>;
+export default meta;
+type Story = StoryObj<typeof LikertSlider>;
+export declare const Default: Story;
+export declare const SingleScale: Story;
+export declare const FiveScale: Story;
+export declare const BinaryScale: Story;
+export declare const FormStory: Story;

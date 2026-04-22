@@ -1,0 +1,11 @@
+import { type Meta, type StoryObj } from '@storybook/react-vite';
+import MidCircle from '.';
+declare const meta: Meta<typeof MidCircle>;
+export default meta;
+type Story = StoryObj<typeof MidCircle>;
+export declare const Default: Story;
+export declare const NoText: Story;
+export declare const DecimalPrecision: Story;
+export declare const Color: Story;
+export declare const Loading: Story;
+export declare const NoTextLoading: Story;

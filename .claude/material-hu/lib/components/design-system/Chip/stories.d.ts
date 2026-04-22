@@ -1,0 +1,15 @@
+import { type Meta, type StoryObj } from '@storybook/react-vite';
+import Chip from '.';
+declare const meta: Meta<typeof Chip>;
+export default meta;
+type Story = StoryObj<typeof Chip>;
+export declare const Default: Story;
+export declare const Medium: Story;
+export declare const Small: Story;
+export declare const MediumDeletable: Story;
+export declare const SmallDeletable: Story;
+export declare const MediumSelected: Story;
+export declare const SmallSelected: Story;
+export declare const MediumDisabled: Story;
+export declare const SmallDisabled: Story;
+export declare const WithHTMLTitle: Story;

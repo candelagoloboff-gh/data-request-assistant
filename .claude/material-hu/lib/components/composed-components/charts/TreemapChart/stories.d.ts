@@ -1,0 +1,11 @@
+import { type Meta, type StoryObj } from '@storybook/react-vite';
+import TreemapChart from '.';
+declare const meta: Meta<typeof TreemapChart>;
+export default meta;
+type Story = StoryObj<typeof TreemapChart>;
+export declare const Default: Story;
+export declare const WithCustomColors: Story;
+export declare const LargeDataset: Story;
+export declare const WithPercentageLabels: Story;
+export declare const CompactSpacing: Story;
+export declare const LargeSpacing: Story;

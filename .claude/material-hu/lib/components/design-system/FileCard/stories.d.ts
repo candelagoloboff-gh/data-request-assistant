@@ -1,0 +1,10 @@
+import { type Meta, type StoryObj } from '@storybook/react-vite';
+import FileCard from '.';
+export declare const mockFile: File;
+declare const meta: Meta<typeof FileCard>;
+export default meta;
+type Story = StoryObj<typeof FileCard>;
+export declare const Default: Story;
+export declare const WithRemove: Story;
+export declare const WithAttachment: Story;
+export declare const WithFileAsset: Story;

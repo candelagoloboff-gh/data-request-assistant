@@ -1,0 +1,17 @@
+import { type Meta, type StoryObj } from '@storybook/react-vite';
+import Audience from './index';
+declare const meta: Meta<typeof Audience>;
+export default meta;
+type Story = StoryObj<typeof meta>;
+export declare const Empty: Story;
+export declare const WithSegmentation: Story;
+export declare const WithIndividual: Story;
+export declare const WithAll: Story;
+export declare const WithMultipleCriteria: Story;
+export declare const CustomTitle: Story;
+export declare const WithOnBeforeDelete: Story;
+export declare const WithTitleSlotProps: Story;
+export declare const WithAlertError: Story;
+export declare const WithAlertWarning: Story;
+export declare const WithAlertInfo: Story;
+export declare const WithAlertAndTitleSlotProps: Story;

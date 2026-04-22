@@ -1,0 +1,11 @@
+import { type Meta, type StoryObj } from '@storybook/react-vite';
+import IconPicker from '.';
+declare const meta: Meta<typeof IconPicker>;
+export default meta;
+type Story = StoryObj<typeof IconPicker>;
+export declare const Default: Story;
+export declare const EmojisOnly: Story;
+export declare const ImagesOnly: Story;
+export declare const Disabled: Story;
+export declare const SpanishText: Story;
+export declare const WithForm: Story;

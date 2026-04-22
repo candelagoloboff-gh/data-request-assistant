@@ -1,0 +1,10 @@
+import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
+import HeaderActions from '../components/HeaderActions';
+import HeaderContainer from '../components/HeaderContainer';
+import HeaderExtraActions from '../components/HeaderExtraActions';
+import HeaderIconButton from '../components/HeaderIconButton';
+import HeaderInfo from '../components/HeaderInfo';
+import HeaderMainActions from '../components/HeaderMainActions';
+import HeaderPill from '../components/HeaderPill';
+import HeaderTitle from '../components/HeaderTitle';
+export const TaskFocusSkeleton = () => (_jsxs(HeaderContainer, { children: [_jsxs(HeaderInfo, { children: [_jsx(HeaderIconButton, { loading: true }), _jsx(HeaderTitle, { title: "", loading: true }), _jsx(HeaderPill, { loading: true })] }), _jsxs(HeaderActions, { children: [_jsx(HeaderMainActions, { loading: true }), _jsx(HeaderExtraActions, { loading: true }), _jsx(HeaderIconButton, { loading: true })] })] }));

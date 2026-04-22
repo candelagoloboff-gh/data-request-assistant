@@ -1,0 +1,10 @@
+import { type Meta, type StoryObj } from '@storybook/react';
+import Wizard from '.';
+declare const meta: Meta<typeof Wizard>;
+export default meta;
+export declare const Default: StoryObj<typeof Wizard>;
+export declare const WithActiveStage: StoryObj<typeof Wizard>;
+export declare const WithActiveSubStage: StoryObj<typeof Wizard>;
+export declare const WithErrorStage: StoryObj<typeof Wizard>;
+export declare const WithMaxLimits: StoryObj<typeof Wizard>;
+export declare const WithCompletedStages: StoryObj<typeof Wizard>;

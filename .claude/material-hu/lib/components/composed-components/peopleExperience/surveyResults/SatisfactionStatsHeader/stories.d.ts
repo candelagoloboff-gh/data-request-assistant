@@ -1,0 +1,13 @@
+import { type Meta, type StoryObj } from '@storybook/react';
+import SatisfactionStatsHeader from './index';
+declare const meta: Meta<typeof SatisfactionStatsHeader>;
+export default meta;
+type Story = StoryObj<typeof SatisfactionStatsHeader>;
+export declare const Default: Story;
+export declare const PoorScore: Story;
+export declare const ExcellentScore: Story;
+export declare const NoResponses: Story;
+export declare const WithPositiveScoreDifference: Story;
+export declare const WithNegativeScoreDifference: Story;
+export declare const WithZeroScoreDifference: Story;
+export declare const WithNullScoreDifference: Story;

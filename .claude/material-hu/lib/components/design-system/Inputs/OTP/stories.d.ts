@@ -1,0 +1,16 @@
+import { type Meta, type StoryObj } from '@storybook/react-vite';
+import FormInputOtp from './form';
+import InputOtp from '.';
+declare const meta: Meta<typeof InputOtp>;
+export default meta;
+type Story = StoryObj<typeof InputOtp>;
+export declare const Default: Story;
+export declare const Password: Story;
+export declare const Rounded: Story;
+export declare const HelperText: Story;
+export declare const Disabled: Story;
+export declare const Success: Story;
+export declare const Error: Story;
+export declare const ExecWhenCompleted: Story;
+export declare const Form: StoryObj<typeof FormInputOtp>;
+export declare const FormDisabled: StoryObj<typeof FormInputOtp>;

@@ -1,0 +1,12 @@
+import { type Meta, type StoryObj } from '@storybook/react-vite';
+import TextChart from '.';
+declare const meta: Meta<typeof TextChart>;
+export default meta;
+type Story = StoryObj<typeof TextChart>;
+export declare const Default: Story;
+export declare const LargeDataset: Story;
+export declare const VariedValues: Story;
+export declare const LongWords: Story;
+export declare const SmallDataset: Story;
+export declare const WithItemClick: Story;
+export declare const WithFooter: Story;

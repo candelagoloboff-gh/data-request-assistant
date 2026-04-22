@@ -1,0 +1,12 @@
+import { type Meta, type StoryObj } from '@storybook/react-vite';
+import Dialog from '.';
+declare const meta: Meta<typeof Dialog>;
+export default meta;
+type Story = StoryObj<typeof Dialog>;
+export declare const Default: Story;
+export declare const WithBody: Story;
+export declare const ScrollTextBody: Story;
+export declare const ControllingWidth: Story;
+export declare const LoadingButton: Story;
+export declare const NonClosableOnBackdropClick: Story;
+export declare const WithoutTextBody: Story;

@@ -1,0 +1,12 @@
+import { type Meta, type StoryObj } from '@storybook/react-vite';
+import Dropdown from '.';
+declare const meta: Meta<typeof Dropdown>;
+export default meta;
+type Story = StoryObj<typeof Dropdown>;
+export declare const DefaultStory: Story;
+export declare const Left: Story;
+export declare const Right: Story;
+export declare const Center: Story;
+export declare const TertiaryButton: Story;
+export declare const NoIcon: Story;
+export declare const Controlled: Story;

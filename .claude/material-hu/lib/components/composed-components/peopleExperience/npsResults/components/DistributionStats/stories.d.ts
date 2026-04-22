@@ -1,0 +1,18 @@
+import { type Meta, type StoryObj } from '@storybook/react';
+import DistributionStats from '.';
+declare const meta: Meta<typeof DistributionStats>;
+export default meta;
+type Story = StoryObj<typeof DistributionStats>;
+export declare const Default: Story;
+export declare const ExcellentScore: Story;
+export declare const PoorScore: Story;
+export declare const Balanced: Story;
+export declare const NoResponses: Story;
+export declare const HighNeutrals: Story;
+export declare const LowDetractors: Story;
+export declare const ModeratePerformance: Story;
+export declare const WithPositiveDifferences: Story;
+export declare const WithNegativeDifferences: Story;
+export declare const WithMixedDifferences: Story;
+export declare const WithPartialDifferences: Story;
+export declare const Loading: Story;

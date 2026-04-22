@@ -1,0 +1,14 @@
+import { type Meta, type StoryObj } from '@storybook/react';
+import NavigableLabelTicks from '.';
+declare const meta: Meta<typeof NavigableLabelTicks>;
+export default meta;
+type Story = StoryObj<typeof NavigableLabelTicks>;
+export declare const Default: Story;
+export declare const WithHighlighted: Story;
+export declare const WithClickableItems: Story;
+export declare const WithoutTitles: Story;
+export declare const Mixed: Story;
+export declare const TwoItems: Story;
+export declare const SingleItem: Story;
+export declare const LongDescriptions: Story;
+export declare const ClickableLongDescriptions: Story;

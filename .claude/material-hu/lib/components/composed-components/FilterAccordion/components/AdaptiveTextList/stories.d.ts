@@ -1,0 +1,11 @@
+import { type Meta, type StoryObj } from '@storybook/react';
+import AdaptiveTextList from './index';
+declare const _default: Meta<typeof AdaptiveTextList>;
+export default _default;
+export declare const Default: StoryObj<typeof AdaptiveTextList>;
+export declare const OneItem: StoryObj<typeof AdaptiveTextList>;
+export declare const TwoItems: StoryObj<typeof AdaptiveTextList>;
+export declare const WithMoreCountThanLoaded: StoryObj<typeof AdaptiveTextList>;
+export declare const CustomAndAndMoreText: StoryObj<typeof AdaptiveTextList>;
+export declare const EmptyList: StoryObj<typeof AdaptiveTextList>;
+export declare const ManyItemsNarrow: StoryObj<typeof AdaptiveTextList>;

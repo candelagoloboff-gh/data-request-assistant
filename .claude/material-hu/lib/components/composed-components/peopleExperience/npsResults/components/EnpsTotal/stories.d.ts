@@ -1,0 +1,12 @@
+import { type Meta, type StoryObj } from '@storybook/react';
+import EnpsTotal from '.';
+declare const meta: Meta<typeof EnpsTotal>;
+export default meta;
+type Story = StoryObj<typeof EnpsTotal>;
+export declare const Default: Story;
+export declare const Negative: Story;
+export declare const Zero: Story;
+export declare const MinValue: Story;
+export declare const MaxValue: Story;
+export declare const Null: Story;
+export declare const WithFooter: Story;

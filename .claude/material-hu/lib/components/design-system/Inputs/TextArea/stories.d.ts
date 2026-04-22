@@ -1,0 +1,12 @@
+import { type Meta, type StoryObj } from '@storybook/react-vite';
+import TextArea from '.';
+declare const meta: Meta<typeof TextArea>;
+export default meta;
+type Story = StoryObj<typeof TextArea>;
+export declare const Default: Story;
+export declare const SimplifiedEditor: Story;
+export declare const WithContent: Story;
+export declare const WithEvents: Story;
+export declare const WithExtraActions: Story;
+export declare const CustomToolbar: Story;
+export declare const FormTextAreaStory: Story;

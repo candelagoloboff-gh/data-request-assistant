@@ -1,0 +1,13 @@
+import { type Meta, type StoryObj } from '@storybook/react-vite';
+import SubSidebar from '.';
+declare const meta: Meta<typeof SubSidebar>;
+export default meta;
+type Story = StoryObj<typeof SubSidebar>;
+export declare const Complex: Story;
+export declare const Simple: Story;
+export declare const ItemsLoading: Story;
+export declare const WithoutTitle: Story;
+export declare const OverflowDefault: Story;
+export declare const OverflowEllipsis: Story;
+export declare const WithAccordions: Story;
+export declare const WithSubItems: Story;

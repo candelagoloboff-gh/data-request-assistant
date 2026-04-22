@@ -1,0 +1,12 @@
+import { type Meta, type StoryObj } from '@storybook/react-vite';
+import ProgressBar from '.';
+declare const meta: Meta<typeof ProgressBar>;
+export default meta;
+type Story = StoryObj<typeof ProgressBar>;
+export declare const Default: Story;
+export declare const Determinate: Story;
+export declare const DeterminateHeight: Story;
+export declare const Percentage: Story;
+export declare const HelperAsString: Story;
+export declare const HelperAsComponent: Story;
+export declare const NoText: Story;

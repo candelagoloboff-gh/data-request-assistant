@@ -1,0 +1,16 @@
+import { type Meta, type StoryObj } from '@storybook/react-vite';
+import SocialHeader from '.';
+declare const meta: Meta<typeof SocialHeader>;
+export default meta;
+type Story = StoryObj<typeof SocialHeader>;
+export declare const Default: Story;
+export declare const Loading: Story;
+export declare const WithTextAvatar: Story;
+export declare const WithIconAvatar: Story;
+export declare const MinimalActions: Story;
+export declare const DropdownMainActions: Story;
+export declare const NoActions: Story;
+export declare const NoPill: Story;
+export declare const WithLargeTitle: Story;
+export declare const JustBack: Story;
+export declare const WithCustomAvatarSlotProps: Story;

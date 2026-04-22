@@ -1,0 +1,13 @@
+import { type Meta, type StoryObj } from '@storybook/react-vite';
+import Uploader from '.';
+declare const meta: Meta<typeof Uploader>;
+export default meta;
+type Story = StoryObj<typeof Uploader>;
+export declare const WithUploads: Story;
+export declare const UploaderWithForm: Story;
+export declare const UploaderFormWithMaxFiles: Story;
+export declare const UploaderFormWithOneFileAllowed: Story;
+export declare const UploaderFormDisabled: Story;
+export declare const UploaderFormWithFileCardDisabled: Story;
+export declare const UploaderFormWithJustPdfAllowed: Story;
+export declare const WithCustomDropzoneBody: Story;

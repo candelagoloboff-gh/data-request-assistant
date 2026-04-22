@@ -1,0 +1,13 @@
+import { type Meta, type StoryObj } from '@storybook/react';
+import TableFilterDecorator from '.';
+declare const meta: Meta<typeof TableFilterDecorator>;
+export default meta;
+type Story = StoryObj<typeof TableFilterDecorator>;
+export declare const Success: Story;
+export declare const Error: Story;
+export declare const Warning: Story;
+export declare const WithDescription: Story;
+export declare const SuccessWithIcon: Story;
+export declare const ErrorWithIcon: Story;
+export declare const WarningWithIcon: Story;
+export declare const WithIconAndDescription: Story;

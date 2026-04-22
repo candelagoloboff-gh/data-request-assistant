@@ -1,0 +1,11 @@
+import { type Meta, type StoryObj } from '@storybook/react-vite';
+import RangeDatePicker from '.';
+declare const meta: Meta<typeof RangeDatePicker>;
+export default meta;
+type Story = StoryObj<typeof RangeDatePicker>;
+export declare const Default: Story;
+export declare const LimitedFixedRange: Story;
+export declare const LimitedDynamicRange: Story;
+export declare const Form: Story;
+export declare const Disabled: Story;
+export declare const Error: Story;

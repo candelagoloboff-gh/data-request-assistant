@@ -1,0 +1,13 @@
+import { type Meta, type StoryObj } from '@storybook/react-vite';
+import InputMoney from '.';
+declare const meta: Meta<typeof InputMoney>;
+export default meta;
+type Story = StoryObj<typeof InputMoney>;
+export declare const Default: Story;
+export declare const WithError: Story;
+export declare const WithSuccess: Story;
+export declare const WithHelperText: Story;
+export declare const Disabled: Story;
+export declare const EmptyCurrency: Story;
+export declare const IntegerValue: Story;
+export declare const FormInputMoneyStory: Story;

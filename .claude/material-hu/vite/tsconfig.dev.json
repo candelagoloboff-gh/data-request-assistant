@@ -1,0 +1,49 @@
+{
+  "compilerOptions": {
+    "paths": {
+      "@material-hu/components/*": ["../material-hu/src/components/*"],
+      "@material-hu/hooks/*": ["../material-hu/src/hooks/*"],
+      "@material-hu/utils/*": ["../material-hu/src/utils/*"],
+      "@material-hu/types/*": ["../material-hu/src/types/*"],
+      "@material-hu/constants/*": ["../material-hu/src/constants/*"],
+      "@material-hu/config/*": ["../material-hu/src/config/*"],
+      "@material-hu/styles/*": ["../material-hu/src/styles/*"],
+      "@material-hu/theme/*": ["../material-hu/src/theme/*"],
+
+      "@composed-components/*": [
+        "../material-hu/src/components/composed-components/*"
+      ],
+      "@design-system/*": ["../material-hu/src/components/design-system/*"],
+      "@assets/*": ["../material-hu/src/assets/*"],
+      "@hooks/*": ["../material-hu/src/hooks/*"],
+      "@types/*": ["../material-hu/src/types/*"],
+      "@utils/*": ["../material-hu/src/utils/*"],
+      "@src/*": ["../material-hu/src/*"],
+      "@constants/*": ["../material-hu/src/constants/*"],
+      "@config/*": ["../material-hu/src/config/*"],
+
+      "@material-hu/mui/x-date-pickers/*": [
+        "node_modules/@mui/x-date-pickers/*"
+      ],
+      "@material-hu/mui/x-date-pickers": ["node_modules/@mui/x-date-pickers"],
+      "@material-hu/mui/lab/*": ["node_modules/@mui/lab/*"],
+      "@material-hu/mui/lab": ["node_modules/@mui/lab"],
+      "@material-hu/mui/*": ["node_modules/@mui/material/*"],
+      "@material-hu/mui": ["node_modules/@mui/material"],
+      "@material-hu/icons/material/*": ["node_modules/@mui/icons-material/*"],
+      "@material-hu/icons/material": ["node_modules/@mui/icons-material"],
+      "@material-hu/icons/tabler": [
+        "node_modules/@tabler/icons-react/dist/tabler-icons-react.d.ts"
+      ],
+      "react": ["node_modules/@types/react"],
+      "react/jsx-runtime": ["node_modules/@types/react/jsx-runtime"],
+      "react-dom": ["node_modules/@types/react-dom"],
+      "@mui/material": ["node_modules/@mui/material"],
+      "@mui/material/*": ["node_modules/@mui/material/*"],
+      "@mui/material/styles": ["node_modules/@mui/material/styles"],
+      "@mui/material/styles/*": ["node_modules/@mui/material/styles/*"],
+      "@mui/system": ["node_modules/@mui/system"],
+      "@mui/system/*": ["node_modules/@mui/system/*"]
+    }
+  }
+}

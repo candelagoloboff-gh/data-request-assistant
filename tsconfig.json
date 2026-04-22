@@ -1,0 +1,45 @@
+{
+  "compilerOptions": {
+    "ignoreDeprecations": "6.0",
+    "baseUrl": ".",
+    "target": "esnext",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": false,
+    "forceConsistentCasingInFileNames": true,
+    "noFallthroughCasesInSwitch": true,
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "allowImportingTsExtensions": true,
+    "noEmit": true,
+    "jsx": "react-jsx",
+    "types": ["vite/client"],
+    "paths": {
+      "@material-hu/components/*": ["node_modules/material-hu/lib/components/*"],
+      "@material-hu/mui/x-date-pickers/*": ["node_modules/@mui/x-date-pickers/*"],
+      "@material-hu/mui/x-date-pickers": ["node_modules/@mui/x-date-pickers"],
+      "@material-hu/mui/lab/*": ["node_modules/@mui/lab/*"],
+      "@material-hu/mui/lab": ["node_modules/@mui/lab"],
+      "@material-hu/mui/*": ["node_modules/@mui/material/*"],
+      "@material-hu/mui": ["node_modules/@mui/material"],
+      "@material-hu/icons/material/*": ["node_modules/@mui/icons-material/*"],
+      "@material-hu/icons/material": ["node_modules/@mui/icons-material"],
+      "@material-hu/hooks/*": ["node_modules/material-hu/lib/hooks/*"],
+      "@material-hu/utils/*": ["node_modules/material-hu/lib/utils/*"],
+      "@material-hu/types/*": ["node_modules/material-hu/lib/types/*"],
+      "@material-hu/styles/*": ["node_modules/material-hu/lib/styles/*"],
+      "@material-hu/theme/*": ["node_modules/material-hu/lib/theme/*"],
+      "@material-hu/icons/tabler": [
+        "node_modules/@tabler/icons-react/dist/tabler-icons-react.d.ts"
+      ],
+      "material-hu/lib/*": ["node_modules/material-hu/lib/*"]
+    }
+  },
+  "include": ["src", "vite.config.ts"],
+  "exclude": ["node_modules", "dist", "build"]
+}

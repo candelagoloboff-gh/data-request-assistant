@@ -1,0 +1,11 @@
+import { type Meta, type StoryObj } from '@storybook/react-vite';
+import InputSelect from '.';
+declare const meta: Meta<typeof InputSelect>;
+export default meta;
+type Story = StoryObj<typeof InputSelect>;
+export declare const NoLabel: Story;
+export declare const DefaultWithHelper: Story;
+export declare const Disabled: Story;
+export declare const Error: Story;
+export declare const ColorSelector: Story;
+export declare const FormInputClassicStory: Story;

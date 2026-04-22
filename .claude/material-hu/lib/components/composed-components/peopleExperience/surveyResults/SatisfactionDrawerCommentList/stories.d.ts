@@ -1,0 +1,12 @@
+import { type Meta, type StoryObj } from '@storybook/react-vite';
+import SatisfactionDrawerCommentList from '.';
+declare const meta: Meta<typeof SatisfactionDrawerCommentList>;
+export default meta;
+type Story = StoryObj<typeof meta>;
+export declare const Default: Story;
+export declare const Loading: Story;
+export declare const EmptyComments: Story;
+export declare const LoadingMore: Story;
+export declare const CustomTitle: Story;
+export declare const CustomEmptyState: Story;
+export declare const WithTableHeaderDecorator: Story;
