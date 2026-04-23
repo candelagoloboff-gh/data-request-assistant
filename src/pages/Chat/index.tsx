@@ -44,7 +44,7 @@ const WELCOME_MESSAGE: VisibleMessage = {
 export function ChatPage() {
   const theme = useTheme();
   const { openDrawer, closeDrawer } = useDrawerLayer();
-  const { userName } = useAuth();
+  const { userName, userEmail } = useAuth();
 
   const [visibleMessages, setVisibleMessages] = useState<VisibleMessage[]>([WELCOME_MESSAGE]);
   const [apiMessages, setApiMessages] = useState<Message[]>([]);
@@ -121,6 +121,7 @@ export function ChatPage() {
           ...response.card,
           ...(imagesCount ? { images_count: imagesCount } : {}),
           ...(userName ? { requester: userName } : {}),
+          ...(userEmail ? { requester_email: userEmail } : {}),
           ...(chatFileUrls.length ? { file_urls: chatFileUrls } : {}),
         });
         // Fetch similar cards in background — attach to card for Notion only

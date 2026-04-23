@@ -36,6 +36,7 @@ type CardData = {
   images_count?: number;
   similar_cards?: { name: string; url: string }[];
   requester?: string;
+  requester_email?: string;
 };
 
 function notionText(content: string) {
@@ -213,8 +214,23 @@ export default async function handler(req: any, res: any) {
     if (card.similar_cards?.length) {
       optionalFields.push({ name: 'Casos similares', value: { rich_text: notionText(card.similar_cards.map((sc) => `${sc.name} ${sc.url}`).join('\n')) } });
     }
-    if (card.requester) {
-      optionalFields.push({ name: 'Requester', value: { rich_text: notionText(card.requester) } });
+    if (card.requester_email) {
+      // Look up Notion user by email to set the Person field
+      try {
+        const usersRes = await fetch(`${NOTION_API}/users`, {
+          headers: {
+            Authorization: `Bearer ${process.env.NOTION_API_KEY!}`,
+            'Notion-Version': NOTION_VERSION,
+          },
+        });
+        if (usersRes.ok) {
+          const usersData = (await usersRes.json()) as { results: { id: string; person?: { email: string } }[] };
+          const notionUser = usersData.results.find((u) => u.person?.email === card.requester_email);
+          if (notionUser) {
+            optionalFields.push({ name: 'Requester', value: { people: [{ id: notionUser.id }] } });
+          }
+        }
+      } catch { /* silently ignore */ }
     }
 
     for (const field of optionalFields) {
