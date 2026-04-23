@@ -7,7 +7,7 @@ const REDASH_QUERY_IDS = {
   profile_fields: 34936,
   pr_cycles: 37715,
   goals_cycles: 37650,
-  sm_categories: 37716,
+  sm_categories: 37726,
   forms: 37654,
   courses: 37655,
 };

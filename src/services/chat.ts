@@ -117,8 +117,9 @@ export function formatOptionLabel(row: Record<string, unknown>, type: string): s
     return String(row.field_name ?? '');
   }
   if (type === 'sm_categories') {
-    const estado = row.estado ? ` (${row.estado === 'ENABLED' ? 'Activo' : 'Inactivo'})` : '';
-    return `${String(row.servicio ?? row.categoria ?? row.name ?? '')}${estado}`;
+    const cat = row.categoria && row.categoria !== 'Sin categoría' ? `${row.categoria} › ` : '';
+    const estado = row.estado === 'INACTIVE' ? ' (Inactivo)' : '';
+    return `${cat}${String(row.servicio ?? row.name ?? '')}${estado}`;
   }
   if (type === 'forms') {
     return String(row.nombre ?? row.name ?? '');
