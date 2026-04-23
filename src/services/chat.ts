@@ -117,7 +117,8 @@ export function formatOptionLabel(row: Record<string, unknown>, type: string): s
     return String(row.field_name ?? '');
   }
   if (type === 'sm_categories') {
-    return String(row.categoria ?? row.name ?? '');
+    const estado = row.estado ? ` (${row.estado === 'ENABLED' ? 'Activo' : 'Inactivo'})` : '';
+    return `${String(row.servicio ?? row.categoria ?? row.name ?? '')}${estado}`;
   }
   if (type === 'forms') {
     return String(row.nombre ?? row.name ?? '');
@@ -136,7 +137,7 @@ export function formatOptionId(row: Record<string, unknown>, type: string): stri
   if (type === 'goals_cycles') return String(row.id ?? '');
   if (type === 'segmentation') return String(row.group_id ?? row.grupo ?? '');
   if (type === 'profile_fields') return String(row.field_id ?? '');
-  if (type === 'sm_categories') return String(row.category_id ?? row.service_id ?? '');
+  if (type === 'sm_categories') return String(row.service_id ?? row.category_id ?? '');
   if (type === 'forms') return String(row.form_id ?? row.id ?? '');
   if (type === 'courses') return String(row.id ?? row.course_id ?? '');
   return String(row.id ?? JSON.stringify(row));
