@@ -55,6 +55,7 @@ export function ChatPage() {
   const [isCreatingCard, setIsCreatingCard] = useState(false);
   const [pendingSelections, setPendingSelections] = useState<Record<number, ChatOption[]>>({});
   const [pastedImages, setPastedImages] = useState<{ dataUrl: string; base64: string; mimeType: string }[]>([]);
+  const [chatFileUrls, setChatFileUrls] = useState<string[]>([]);
 
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
@@ -79,6 +80,12 @@ export function ChatPage() {
     const images: MessageImage[] = pastedImages.map(({ base64, mimeType }) => ({ base64, mimeType }));
     const imageDataUrls = pastedImages.map((img) => img.dataUrl);
     setPastedImages([]);
+
+    const urlRegex = /https?:\/\/[^\s]+/g;
+    const foundUrls = text.match(urlRegex) ?? [];
+    if (foundUrls.length) {
+      setChatFileUrls((prev) => [...prev, ...foundUrls.filter((u) => !prev.includes(u))]);
+    }
 
     const newUserMessage: Message = { role: 'user', content: text, ...(images.length ? { images } : {}) };
     const newApiMessages: Message[] = [...apiMessages, newUserMessage];
@@ -114,6 +121,7 @@ export function ChatPage() {
           ...response.card,
           ...(imagesCount ? { images_count: imagesCount } : {}),
           ...(userName ? { requester: userName } : {}),
+          ...(chatFileUrls.length ? { file_urls: chatFileUrls } : {}),
         });
         // Fetch similar cards in background — attach to card for Notion only
         if (response.card.miniapps?.length) {
@@ -241,6 +249,7 @@ export function ChatPage() {
     setCardUrl(null);
     setPendingSelections({});
     setPastedImages([]);
+    setChatFileUrls([]);
   }
 
   function handleKeyDown(e: KeyboardEvent<HTMLTextAreaElement>) {
