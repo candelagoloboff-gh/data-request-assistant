@@ -197,9 +197,9 @@ export default async function handler(req: any, res: any) {
     });
 
     if (!notionRes.ok) {
-      const errorText = await notionRes.text();
-      console.error('[notion/cards] Notion API error:', errorText);
-      return res.status(500).json({ error: 'Error al crear la card en Notion' });
+      const errorData = await notionRes.json().catch(() => ({})) as { message?: string; code?: string };
+      console.error('[notion/cards] Notion API error:', errorData);
+      return res.status(500).json({ error: errorData.message ?? 'Error al crear la card en Notion' });
     }
 
     const page = (await notionRes.json()) as { id: string; url: string };

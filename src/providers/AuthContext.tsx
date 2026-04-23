@@ -25,8 +25,16 @@ async function fetchUserName(token: string): Promise<string | null> {
       headers: { Authorization: `Bearer ${token}` },
     });
     if (!res.ok) return null;
-    const data = (await res.json()) as { name?: string; given_name?: string; email?: string };
-    return data.name ?? data.given_name ?? data.email ?? null;
+    const data = (await res.json()) as Record<string, unknown>;
+    return (
+      (data.name as string) ??
+      (data.given_name as string) ??
+      (data.preferred_username as string) ??
+      (data.displayName as string) ??
+      (data.display_name as string) ??
+      (data.email as string) ??
+      null
+    );
   } catch {
     return null;
   }

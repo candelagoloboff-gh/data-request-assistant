@@ -203,12 +203,13 @@ export function ChatPage() {
           cardUrl: result.url,
         },
       ]);
-    } catch {
+    } catch (err) {
+      const msg = err instanceof Error ? err.message : 'Error desconocido';
       setVisibleMessages((prev) => [
         ...prev,
         {
           role: 'assistant',
-          content: 'No pude crear la card en Notion. Verificá que la API key esté configurada.',
+          content: `No pude crear la card en Notion: ${msg}`,
         },
       ]);
       closeDrawer('card-confirmation');

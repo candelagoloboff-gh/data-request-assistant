@@ -73,7 +73,8 @@ export async function createNotionCard(
   });
 
   if (!res.ok) {
-    throw new Error('Error al crear la card en Notion');
+    const body = await res.json().catch(() => ({})) as { error?: string };
+    throw new Error(body.error ?? 'Error al crear la card en Notion');
   }
 
   return res.json() as Promise<{ id: string; url: string }>;
