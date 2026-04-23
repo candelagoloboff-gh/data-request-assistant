@@ -68,7 +68,7 @@ NUNCA llames propose_card sin nombre_comunidad.
 VARIABLES OBLIGATORIAS POR MÓDULO — antes de llamar propose_card, SIN EXCEPCIÓN:
 - Performance Review → llamá get_variables(type="pr_cycles") para saber qué ciclo
 - Goals → llamá get_variables(type="goals_cycles") para saber qué ciclo
-- Service Management → llamá get_variables(type="sm_categories") para saber qué servicio/s. Obligatorio siempre, aunque el SAM no lo mencione.
+- Service Management → llamá get_variables(type="sm_categories") para saber qué servicio/s. Si devuelve vacío, la instancia no tiene SM configurado — continuá igual y anotalo en la descripción.
 - Forms → llamá get_variables(type="forms") para saber qué formulario
 - Courses → llamá get_variables(type="courses") para saber qué curso/categoría
 - Si el pedido menciona segmentaciones, grupos, filtros por segmento → llamá get_variables(type="segmentation")
@@ -414,11 +414,14 @@ export default async function handler(req: any, res: any) {
             });
           }
 
-          // No results: inform the model and continue
+          // No results: inform the model and continue — for sm_categories, explicitly tell it to proceed
+          const emptyMsg = type === 'sm_categories'
+            ? 'Esta instancia no tiene servicios de SM configurados. Continuá con la card igual, anotando en la descripción que los servicios no están configurados en esta instancia.'
+            : 'No se encontraron resultados para esos parámetros. Continuá con la información disponible.';
           funcResponses.push({
             functionResponse: {
               name: call.name,
-              response: { message: 'No se encontraron resultados para esos parámetros.' },
+              response: { message: emptyMsg },
             },
           });
         }
